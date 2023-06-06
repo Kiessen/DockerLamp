@@ -1,7 +1,7 @@
 version: '3.7'
 services:
     php-apache-environment:
-        container_name: php-apache
+        container_name: php
         build:
             context: ./php
             dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
         ports:
             - "80:80"
     db:
-        container_name: db
+        container_name: db-mysql
         image: mysql
         restart: always
         environment:
@@ -26,6 +26,7 @@ services:
         ports:
             - "9906:3306"
     phpmyadmin:
+      container_name: db-phpmyadmin
       image: phpmyadmin/phpmyadmin
       ports:
         - "8080:80"
@@ -34,3 +35,9 @@ services:
         PMA_HOST: db
       depends_on:
         - db
+    web:
+      container_name: web-nginx
+      image: nginx
+      ports:
+      - "8000:80"
+      
