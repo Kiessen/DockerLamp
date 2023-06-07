@@ -1,11 +1,10 @@
-version: '3.8'
+version: '3.7'
 services:
-    php-apache:
-        container_name: php-apache
-        image: php:8.2.6-apache
-        build :
-          context: .
-          dockerfile: ./php/Dockerfile
+    php-apache-environment:
+        container_name: php
+        build:
+            context: ./php
+            dockerfile: Dockerfile
         depends_on:
             - db
         volumes:
